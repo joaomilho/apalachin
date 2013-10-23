@@ -24,7 +24,7 @@
  $(document).ready(function() {
 
      // Create a WebSocket object.
-     wsc = new WebSocket("ws://cb-chat.herokuapp.com:8001/websocket/chat_protocol", "chat_protocol");
+     wsc = new WebSocket("ws://cb-chat.herokuapp.com/websocket/chat_protocol", "chat_protocol");
 
      // Send message to server.
      $("button").click(function(event) {

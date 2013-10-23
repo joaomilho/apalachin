@@ -1,0 +1,50 @@
+<!--<h1>{{ errors }}</h1>-->
+
+<!--<ol>-->
+  <!--{% for customer in customers %}-->
+    <!--<li>{{ customer.pno }} - {{ customer.name }}</li>-->
+  <!--{% endfor %}-->
+<!--</ol>-->
+
+<!--<form action="" method="POST">-->
+  <!--<input name="pno" placeholder="PNO" />-->
+  <!--<input name="name" placeholder="Name" />-->
+  <!--<input type="submit" />-->
+<!--</form>-->
+
+<input id="name" placeholder="Name" />
+<input id="msg" placeholder="Message" />
+<button>Send</button>
+<div id="msgs"></div>
+
+<script src="http://codeorigin.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+ $(document).ready(function() {
+
+     // Create a WebSocket object.
+     wsc = new WebSocket("ws://localhost:8001/websocket/chat_protocol", "chat_protocol");
+
+     // Send message to server.
+     $("button").click(function(event) {
+         var name = $("#name").val();
+
+         var msg = $("#msg").val();
+         var value = name + ': ' + msg;
+         console.log('sending: ' + value);
+         $("#msg").val('').focus();
+         wsc.send(value);
+     })
+
+     // Receive message from server.
+     wsc.onmessage = function(event) {
+         var data = event.data;
+         console.log('receiving: ' + data)
+         $('#msgs').append(data + '<br />');
+     }
+
+ });
+
+</script>
+

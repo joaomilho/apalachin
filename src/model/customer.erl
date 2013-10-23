@@ -1,0 +1,2 @@
+-module(customer, [Id, Pno, Name]).
+-compile(export_all).

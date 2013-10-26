@@ -59,8 +59,29 @@ div.msg{
   float: left;
 }
 
+ul#users {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul#users li{
+  padding: 4px 0;
+}
 
 
+ul#users li.online img{
+  background: green;
+  border: 4px solid #3c3;
+}
+
+ul#users li img{
+  width: 32px;
+  height: 32px;
+  border: 4px solid #c33;
+  border-radius: 4px;
+
+}
 
 
 

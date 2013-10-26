@@ -7,7 +7,6 @@
           chat_lobby_controller,chat_signin_controller,person,
           chat_view_lib_tags,chat_custom_filters,chat_custom_tags,
           chat_view_app_html,'chat_view_chat_++index_html',
-          chat_view_chat___index_html,chat_view_chat___index_jade,
           chat_view_chat_index_html,chat_view_messages_index_html,
           chat_view_signin_new_html]},
      {registered,[]},
@@ -26,6 +25,5 @@
           {view_lib_helper_modules,[chat_custom_filters,chat_custom_tags]},
           {view_modules,
               [chat_view_app_html,'chat_view_chat_++index_html',
-               chat_view_chat___index_html,chat_view_chat___index_jade,
                chat_view_chat_index_html,chat_view_messages_index_html,
                chat_view_signin_new_html]}]}]}.

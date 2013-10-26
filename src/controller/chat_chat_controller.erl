@@ -8,5 +8,5 @@ before_(_) ->
   auth_lib:auth(user_id()).
 
 index('GET', [], User) ->
-  error_logger:info_msg("((chat/index)) ~p / ~p~n", [Sess, user_id()]),
-  {ok, [{user, User}]}.
+  Users = boss_db:find(person, []),
+  {ok, [{current_user, User}, {users, Users}]}.

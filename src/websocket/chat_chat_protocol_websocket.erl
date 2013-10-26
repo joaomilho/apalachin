@@ -34,12 +34,10 @@ handle_join(_, WebSocketId, SessionId, State) ->
       {stop, "Auth", State};
     User ->
       #state{users=Users} = State,
-      %AfterJoinState = #state{users=[WebSocketId|Users], messages=Messages},
+      WebSocketId ! {text, jsx:encode( dict:fetch_keys(Users) )},
       AfterJoinState = #state{users=dict:store(UserId, WebSocketId, Users)},
       {reply, ok, AfterJoinState}
-      %{reply, ok, AfterJoinState}
   end.
-
 
 handle_close(ServiceName, WebSocketId, SessionId, State) ->
     error_logger:info_msg("(handle_close) ~p / ~p / ~p / ~p~n", [

@@ -1,9 +1,6 @@
 -module(chat_signin_controller, [Req, Sess]).
 -compile(export_all).
 
-%new('GET', []) ->
-  %{ok, []}.
-
 create('POST', []) ->
   Email = Req:post_param("email"),
   Password = Req:post_param("password"),

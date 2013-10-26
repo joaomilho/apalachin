@@ -1,0 +1,40 @@
+{% extends "app.html" %}
+
+{% block content %}
+
+<h2>
+  {{ user.name }}!!
+</h2>
+
+<div class="container">
+  <!-- Example row of columns -->
+
+  <form id="new-message" class="form">
+    <div class="input-group">
+
+      <input name="message" placeholder="Message" class="form-control" style="width: 500px;" />
+
+      <button class="btn btn-primary form-control" style="width:80px;">Send</button>
+    </div>
+
+  </form>
+  <div id="msgs">
+
+  </div>
+
+  <div class="row msg template" style="display: none">
+    <div class="left">
+      <img src="" class="img-circle" style="width: 32px;" />
+      <p class="name"></p>
+    </div>
+    <div class="right">
+      <p class="bubble">
+        <span class="text">Hey!</span>
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script src="/static/js/chat.js"></script>
+{% endblock %}

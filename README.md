@@ -40,6 +40,7 @@ Have a working example of many features of ChicagoBoss, including websockets, fo
 	```
 6. Run in dev mode:
 	```shell
+	./rebar compile
 	./init-dev.sh
 	```
 

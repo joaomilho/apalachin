@@ -9,7 +9,8 @@ Have a working example of many features of ChicagoBoss, including websockets, fo
 
 #### Install
 
-1. Install [Erlang](https://www.erlang-solutions.com/downloads/download-erlang-otp) (version R15B03 +). You can also use ```brew install erlang``` if you're on Mac.
+1. Install [Erlang](https://www.erlang-solutions.com/downloads/download-erlang-otp) (version R15B03 +).
+	You can also use ```brew install erlang``` if you're on MacOS.
 
 2. Download and install ChicagoBoss:
 	```shell
@@ -25,13 +26,13 @@ Have a working example of many features of ChicagoBoss, including websockets, fo
 	cd chicagoboss-chat
 	./init-dev.sh
 	```
-4. Copy boss.config.example to boss.config change the path of ChicagoBoss and your database setup:
+4. Copy boss.config.example to boss.config, then edit the file changing the path of ChicagoBoss and your database setup:
 	```shell
 	cp boss.config.exemple boss.config
 	vi boss.config
 	```
 
-5. Open your database and run priv/schema.sql and then create some users:
+5. Open your database, run priv/schema.sql and then create some users:
 	```shell
 	psql -U YOUR_USER -d YOUR_DATABASE
 	\i ./priv/schema.sql

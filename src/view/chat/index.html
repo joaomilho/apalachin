@@ -1,55 +1,49 @@
 {% extends "app.html" %}
-
+<!--->
 {% block content %}
-<br />
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row">
-    <div class="col-md-3">
-      <ul id="users">
-        {% for user in users %}
-        <li id="{{ user.id }}" {% if user == current_user %}class="online"{% endif %}>
-          <span style="display: none;" class="typing badge pull-right">
-            typing...
-          </span>
+<aside>
+  <ul id="users">
+    {% for user in users %}
 
-          <img data-email="{{ user.email }}" />
-          <span>{{ user.name }}</span>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="col-md-9">
-      <form id="new-message" class="form">
-        <div class="input-group">
+    <li id="{{ user.id }}" data-email="{{ user.email }}" {% if user == current_user %}data-me="true"{% endif %}>
+      <!--class="img-circle"-->
+      <!--<img  data-email="{{ user.email }}" />-->
+      <strong>●</strong>
+      <span class="name">{{ user.name }}</span>
 
-          <input name="message" placeholder="Message" class="form-control" style="width: 500px;" />
+    </li>
+    {% endfor %}
+  </ul>
+</aside>
 
-          <button class="btn btn-primary form-control" style="width:80px;">Send</button>
-        </div>
+<section id="main">
+  <ul id="messages">
+  </ul>
 
-      </form>
-      <div id="msgs">
+  <form id="new-message" class="form">
+    <div class="input-group">
 
-      </div>
+      <input autocomplete="off" name="message" placeholder="Message" class="form-control message-input" />
 
+      <!--<button>Send</button>-->
     </div>
 
-  </div>
+  </form>
+</section>
 
-
-
-  <div class="row msg template" style="display: none">
-    <div class="left">
-      <img src="" class="img-circle" style="width: 32px;" />
+  <li class="message template" style="display: none">
+    <div class="user">
+      <img src="" class="img-circle" />
       <p class="name"></p>
     </div>
-    <div class="right">
+
+    <div class="info">
       <p class="bubble">
         <span class="text">Hey!</span>
       </p>
+      <span class="time">10:12</span>
     </div>
-  </div>
+  </li>
 {% endblock %}
 
 {% block js %}

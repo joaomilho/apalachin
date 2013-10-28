@@ -1,13 +1,11 @@
 $(document).ready(function() {
 
-    $('#users li').each(function(){
-      $(this).find('img').each(function(){
-        var hash = CryptoJS.MD5($(this).data('email'));
-        var avatar = 'http://www.gravatar.com/avatar/' + hash
+    user_id = $('[data-me]').attr('id');
 
-        $(this).attr('src', avatar);
-      })
-    })
+    function avatar(id){
+      var hash = CryptoJS.MD5($('#'+id).data('email'));
+      return 'http://www.gravatar.com/avatar/' + hash
+    }
 
     // Create a WebSocket object.
     // ws://localhost:8001
@@ -25,12 +23,17 @@ $(document).ready(function() {
         //var value = '<div><b>' + name + ':</b> ' + msg;
         console.log('sending: ' + msg);
         input.val('').focus();
+        //alert('a')
         wsc.send(msg);
+        //alert('b')
 
+        create_message([user_id, msg]);
         return false;
     })
 
-    $("input[name='message']").keyup(function(){
+    ENTER = 13;
+    $("input[name='message']").keyup(function(event){
+      if(event.which != ENTER)
         wsc.send("typing");
     })
 
@@ -56,9 +59,17 @@ $(document).ready(function() {
         }
     }
 
-    function show_typing(user_id){
-      //TODO User the timer!
-      $('#'+user_id).find('.typing').show();
+    typings = {};
+    //typing_img = $('<img src="/static/img/typing.png" style="width:24px;" />')
+
+    function show_typing(id){
+      //TODO Use the timer!
+      //$('#'+user_id).find('.typing').show();
+      if(typings[id]) return;
+
+      template = show_message(id, '<span class="typing">&bull;&bull;&bull;</span>');
+      typings[id] = template;
+      template.find('.time').remove();
     }
 
     function show_users(user_list){
@@ -69,17 +80,29 @@ $(document).ready(function() {
 
     function create_message(msg){
       console.log("message:", msg);
-      $('#'+msg.user_id).find('.typing').hide();
+      id = msg.shift();
+      message = msg.shift();
+      //$('#'+msg.user_id).find('.typing').hide();
+      if(typings[id]){
+        typings[id].hide();
+        typings[id] = null;
+      }
+      show_message(id, message);
 
+    }
+
+    function show_message(id, message){
       template = $('.template').clone().removeClass('template');
-      template.show();
-      var hash = CryptoJS.MD5(msg.email);
-      var avatar = 'http://www.gravatar.com/avatar/' + hash
-      template.find('img').attr('src', avatar)
-      template.find('.text').text(msg.message)
-      template.find('.name').text(msg.name)
+      template.addClass(user_id == id ? 'left' : 'right')
 
-      $('#msgs').prepend(template);
+      template.show();
+      //avatar = $('#'+id).find('img').attr('src')
+      template.find('img').attr('src', avatar(id))
+      template.find('.text').html(message)
+      //template.find('.name').text(msg.name)
+
+      $('#messages').prepend(template);
+      return template;
     }
 
 });

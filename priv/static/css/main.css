@@ -1,87 +1,207 @@
+/*
+ * Color scheme:
+ * https://kuler.adobe.com/create/color-wheel/?base=2&rule=Compound&selected=3&name=My%20Kuler%20Theme&mode=rgb&rgbvalues=0.07999999999999999,0.5918838475501434,0.8,0.24,0.4959419237750717,0.6,0,1,0.7448275862066112,1,0.3190948275859,0.25,0.8,0.07999999999999999,0.21257931034529973&swatchOrder=0,1,2,3,4
+ * */
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+body{
+  background: #f2f0f7;
+  font-family: Montserrat;
+  padding: 0;
+  margin: 0;
+}
+
+nav{
+  background: #34323d;
+  color: #ddd;
+  padding: 20px;
+}
+
+aside{
+  /*background: rgba(0,0,0,0.1) !important;*/
+  background: white;
+  border-right: 1px solid #ddd;
+  min-height: 560px;
+  padding: 0;
+  width: 200px;
+  float: left;
+
+}
+
+section#main{
+  margin-left: 201px;
+  /*float: left;*/
+}
+
+form{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.message-input{
+  width: 90%;
+  padding: 10px;
+  font-size: 20px;
+  line-height: 40px !important;
+  height: 60px;
+  background: white;
+  border: none;
+}
+/*button{*/
+  /*width: 10%;*/
+  /*padding: 10px;*/
+  /*font-size: 20px;*/
+  /*line-height: 40px !important;*/
+  /*height: 60px;*/
+  /*background: #1497CC;*/
 
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+/*}*/
 
-
-
-
-
-
-
-
-.bubble
-{
+form{
+  margin-bottom: 15px !important;
+}
+.message .bubble{
   position: relative;
   /*width: ;*/
   /*height: 85px;*/
   padding: 0px;
-  background: #eeeeee;
+  background: #fff;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  margin: 0;
 }
 
-.bubble:after
-{
+.message .info .bubble:after{
   content: '';
   position: absolute;
   border-style: solid;
-  border-width: 14px 17px 14px 0;
-  border-color: transparent #eeeeee;
+  border-color: transparent #fff;
   display: block;
   width: 0;
   z-index: 1;
+  border-radius: 8px;
+}
+
+
+li.message.left .info .bubble:after{
+  border-width: 14px 17px 14px 0;
   left: -8px;
   top: 0px;
 }
 
+li.message.right .info .bubble:after{
+  border-width: 14px 0 14px 17px;
+  right: -8px;
+  top: 0px;
+}
 
-span.text{
-  padding: 12px;
+
+.bubble span.text{
+  padding: 3px 12px;
+
   display: block;
   font-size: 18px;
 }
 
-div.msg{
-  padding: 10px 0 0 0;
+li.message span.time{
+  padding: 3px 12px 3px 15px;
+  display: block;
+  font-size: 12px;
+  color: #999;
 }
 
-.msg .left{
+
+li.message{
+  padding: 10px 0 0 0;
+  overflow: hidden;
+}
+
+.message.left .user{
   float: left;
-  width: 100px;
+  width: 60px;
   text-align: right;
 }
 
-.msg .right{
-  margin-left: 20px;
+.message.left .info{
+  /*margin-left: px;*/
+  left: 0px;
   float: left;
 }
+
+
+.message.right .user{
+  float: right;
+  width: 100px;
+  text-align: left;
+}
+
+.message.right .info{
+  right: 0px;
+  float: right;
+}
+
+.message .user img{
+  width: 64px;
+  border-radius: 10px;
+  border: 4px solid rgba(0,0,0,0.2);
+  /*border-top: 4px solid rgba(0,0,0,0.2);*/
+
+
+  /*box-shadow: -5px 5px 5px black;*/
+}
+
+
+
+
+
+div.name{
+  /*display: block;*/
+  float: left;
+  line-height: 40px;
+  /*text-transform: uppercase;*/
+  /*font-size: 12px;*/
+  padding-top: 5px;
+  color: #223;
+
+  /*margin-left: 60px;*/
+}
+
 
 ul#users {
   margin: 0;
   padding: 0;
   list-style: none;
+  overflow: hidden;
+  /*border: 1px solid red;*/
 }
 
 ul#users li{
-  padding: 4px 0;
+  line-height: 40px;
+  padding: 0;
+  border-bottom: 1px solid #eef;
+
+}
+ul#users li[data-me]{
+  display: none;
+}
+ul#users li strong{
+  line-height: 38px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  padding: 2px 2px 0 10px;
+  font-size: 32px;
+  color: #ff5140;
+}
+ul#users li.online strong{
+  color: #3ecfaa;
 }
 
 
-ul#users li.online img{
-  background: green;
-  border: 4px solid #3c3;
+span.typing{
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
-
-ul#users li img{
-  width: 32px;
-  height: 32px;
-  border: 4px solid #c33;
-  border-radius: 4px;
-
-}
-
-
-

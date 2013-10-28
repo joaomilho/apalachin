@@ -1,11 +1,14 @@
-# chicagoboss-chat
+# Apalachin
 ===
 
 A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang's](http://www.erlang.org/) [ChicagoBoss](http://www.chicagoboss.org/), using [Cowboy](https://github.com/extend/cowboy) server and [PostgreSQL](http://www.postgresql.org/).
 
 #### Goal of the project
 
-Have a working example of many features of ChicagoBoss, including websockets, for the begginer.
+- Have a working example of many features of ChicagoBoss, including websockets, for the begginer.
+- Be as easy to mantain as possible.
+- Be stupidly fast.
+- Have a working version using Elixir also.
 
 #### Install
 
@@ -48,7 +51,7 @@ Have a working example of many features of ChicagoBoss, including websockets, fo
 7. Open Safari or Firefox on http://localhost:8001, sign in, and have fun!
 
 #### Roadmap
-
+- Add websockets compat layer to work in Chrome/IE as well;
 - Add tests!;
 - Add [bcrypt](https://github.com/mrinalwadhwa/erlang-bcrypt) to password validation;	
 - Figure out how to have proper [migrations](https://groups.google.com/forum/#!searchin/chicagoboss/migrate/chicagoboss/Cp2e_8ZumoA/HSDzrAxrYfAJ), docs aren't helpful!;

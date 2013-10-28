@@ -23,10 +23,10 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 	make
 	```
 
-3. Clone chicagoboss-chat:
+3. Clone Apalachin:
 	```shell
-	git clone git@github.com:joaomilho/chicagoboss-chat.git
-	cd chicagoboss-chat
+	git clone git@github.com:joaomilho/apalachin.git
+	cd apalachin
 	./init-dev.sh
 	```
 4. Copy boss.config.example to boss.config, then edit the file changing the path of ChicagoBoss and your database setup:

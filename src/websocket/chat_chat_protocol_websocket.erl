@@ -15,10 +15,22 @@ user_list(Users) ->
   lists:map(fun(X) -> list_to_binary(X) end, dict:fetch_keys(Users)).
 
 values(Dict) ->
-  lists:map(fun({_,V}) -> V end, dict:to_list(Dict)).
+  list_values(dict:to_list(Dict)).
+
+list_values(List) ->
+  lists:map(fun({_,V}) -> V end, List).
+
+values_except_key(Key, Dict) ->
+  FilteredList = lists:filter(fun({K,_}) -> Key =/= K end, dict:to_list(Dict)),
+  list_values(FilteredList).
 
 notify_all(Notification, #state{users=Users}) ->
   Connections = values(Users),
+  EncodedNotification = jsx:encode(Notification),
+  lists:map(fun(Conn) -> Conn ! {text, EncodedNotification} end, Connections).
+
+notify_all_except_me(Notification, User, #state{users=Users}) ->
+  Connections = values_except_key(User:id(), Users),
   EncodedNotification = jsx:encode(Notification),
   lists:map(fun(Conn) -> Conn ! {text, EncodedNotification} end, Connections).
 
@@ -57,13 +69,14 @@ handle_incoming(_, WebSocketId, SessionId, Message, State) ->
       User ->
         Notification = case Message of
           <<"typing">> ->
-            [<<"typing">>, list_to_binary(User:id())];
+            Data = list_to_binary(User:id()),
+            [<<"typing">>, Data];
           _ ->
-            Data = [{user_id, list_to_binary(User:id())},{name, User:name()}, {email, User:email()}, {message, Message}],
+           Data = [list_to_binary(User:id()), Message],
             [<<"message">>, Data]
         end,
 
-        notify_all(Notification, State),
+        notify_all_except_me(Notification, User, State),
 
         {noreply, State}
     end.

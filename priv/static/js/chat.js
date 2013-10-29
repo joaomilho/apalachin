@@ -2,38 +2,47 @@ $(document).ready(function() {
 
     user_id = $('[data-me]').attr('id');
 
+    scroll_messages = function(){
+      var height = $( "ul#messages" )[0].scrollHeight;
+      $( "ul#messages" ).scrollTop( height );
+    }
+
+    heights = function(){
+      aside_height = $(window).height() - $('nav').height() - 40
+      messages_height = aside_height - $('input').height() - 20
+      $('ul#messages').height( messages_height )
+      $('aside').height( aside_height )
+      scroll_messages()
+    }
+
+    $(window).resize(heights);
+    heights();
+
     function avatar(id){
-      var hash = CryptoJS.MD5($('#'+id).data('email'));
-      return 'http://www.gravatar.com/avatar/' + hash
+      try{
+        var hash = CryptoJS.MD5($('#'+id).data('email'));
+        return 'http://www.gravatar.com/avatar/' + hash
+      }catch(e){
+        return '/static/img/default-avatar.jpeg'
+      }
     }
 
     // Create a WebSocket object.
-    // ws://localhost:8001
     wsc = new WebSocket("ws://localhost:8001/websocket/chat_protocol", "chat_protocol");
 
-    // Send message to server.
     $("#new-message").submit(function(event) {
-        //var name = $("#name").val();
-        //var email = $("#email").val();
-        var input = $("input[name='message']");
-        var msg = input.val();
-        //var json = {};
-        //$.each($(this).serializeArray(), function() { json[this.name] = this.value; });
-        //var data = JSON.stringify(json);
-        //var value = '<div><b>' + name + ':</b> ' + msg;
-        console.log('sending: ' + msg);
-        input.val('').focus();
-        //alert('a')
-        wsc.send(msg);
-        //alert('b')
+      var input = $("input[name='message']");
+      var msg = input.val();
+      input.val('').focus();
+      wsc.send(msg);
 
-        create_message([user_id, msg]);
-        return false;
+      create_message([user_id, msg]);
+      return false;
     })
 
     ENTER = 13;
     $("input[name='message']").keyup(function(event){
-      if(event.which != ENTER)
+      if(event.which != ENTER && $(this).val())
         wsc.send("typing");
     })
 
@@ -41,30 +50,24 @@ $(document).ready(function() {
     // Receive message from server.
     wsc.onmessage = function(event) {
         var data = JSON.parse(event.data);
-        //alert(data)
         command = data[0];
-        //alert(command)
+
         switch(command){
-          case "user_list":
-            show_users(data[1]);
-            break;
-          case "message":
-            create_message(data[1]);
-            break;
-          case "typing":
-            show_typing(data[1]);
-            break;
-
-
+        case "user_list":
+          show_users(data[1]);
+          break;
+        case "message":
+          create_message(data[1]);
+          break;
+        case "typing":
+          show_typing(data[1]);
+          break;
         }
     }
 
     typings = {};
-    //typing_img = $('<img src="/static/img/typing.png" style="width:24px;" />')
 
     function show_typing(id){
-      //TODO Use the timer!
-      //$('#'+user_id).find('.typing').show();
       if(typings[id]) return;
 
       template = show_message(id, '<span class="typing">&bull;&bull;&bull;</span>');
@@ -79,33 +82,32 @@ $(document).ready(function() {
     }
 
     function create_message(msg){
-      console.log("message:", msg);
       id = msg.shift();
       message = msg.shift();
-      //$('#'+msg.user_id).find('.typing').hide();
       if(typings[id]){
         typings[id].hide();
         typings[id] = null;
       }
       show_message(id, message);
-
     }
 
     function show_message(id, message){
       template = $('.template').clone().removeClass('template');
-      template.addClass(user_id == id ? 'left' : 'right')
+      template.addClass(user_id == id ? 'left' : 'right');
 
       template.show();
-      //avatar = $('#'+id).find('img').attr('src')
-      template.find('img').attr('src', avatar(id))
-      template.find('.text').html(message)
-      //template.find('.name').text(msg.name)
+      template.find('img').attr('src', avatar(id));
+      template.find('.text').html(message);
 
-      $('#messages').prepend(template);
+      var now = new Date();
+      var hour = now.getHours();
+      var minutes = now.getMinutes();
+
+      template.find('.time').text(hour + ':' + minutes)
+
+      $('#messages').append(template);
+      scroll_messages()
       return template;
     }
 
 });
-
-
-

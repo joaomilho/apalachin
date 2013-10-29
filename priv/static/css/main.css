@@ -11,6 +11,12 @@ body{
   margin: 0;
 }
 
+ul#messages{
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
 nav{
   background: #34323d;
   color: #ddd;
@@ -21,7 +27,7 @@ aside{
   /*background: rgba(0,0,0,0.1) !important;*/
   background: white;
   border-right: 1px solid #ddd;
-  min-height: 560px;
+  /*min-height: 560px;*/
   padding: 0;
   width: 200px;
   float: left;
@@ -37,6 +43,8 @@ form{
   position: fixed;
   bottom: 0;
   width: 100%;
+  margin: 0;
+
 }
 .message-input{
   width: 90%;
@@ -46,6 +54,8 @@ form{
   height: 60px;
   background: white;
   border: none;
+  border-top: 1px solid #ddd;
+
 }
 /*button{*/
   /*width: 10%;*/
@@ -58,9 +68,6 @@ form{
 
 /*}*/
 
-form{
-  margin-bottom: 15px !important;
-}
 .message .bubble{
   position: relative;
   /*width: ;*/
@@ -121,7 +128,7 @@ li.message{
 
 .message.left .user{
   float: left;
-  width: 60px;
+  width: 100px;
   text-align: right;
 }
 

@@ -1,6 +1,8 @@
 -module(person, [Id, Name, Email, Password]).
 -compile(export_all).
 
+-has({messages, many}).
+
 %session_identifier() ->
   %mochihex:to_hex(erlang:md5("SS" ++ Id)).
 

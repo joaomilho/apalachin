@@ -8,8 +8,6 @@ signin(Email, Password) ->
   boss_db:find(person, [{email, Email}, {password, Password}]).
 
 auth(UserId) ->
-  error_logger:info_msg("((auth)) ~p~n", [UserId]),
-
   case UserId of
     undefined -> redirect_to_signin();
     Id ->

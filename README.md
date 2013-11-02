@@ -10,6 +10,11 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 - Be stupidly fast.
 - Have a working version using Elixir also.
 
+
+#### Look & feel
+
+<img alt="Apalachin look and feel" src="https://raw.github.com/joaomilho/apalachin/master/priv/static/img/shot.png" style="border: 1px solid #ccd;" />
+
 #### Install
 
 1. Install [Erlang](https://www.erlang-solutions.com/downloads/download-erlang-otp) (version R15B03 +).

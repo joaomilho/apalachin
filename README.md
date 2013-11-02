@@ -29,23 +29,21 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 	cd apalachin
 	./init-dev.sh
 	```
+	
 4. Copy boss.config.example to boss.config, then edit the file changing the path of ChicagoBoss and your database setup:
 	```shell
 	cp boss.config.exemple boss.config
 	vi boss.config
 	```
 
-5. Open your database, run priv/schema.sql and then create some users:
+5. Run in dev mode:
 	```shell
-	psql -U YOUR_USER -d YOUR_DATABASE
-	\i ./priv/schema.sql
-	INSERT INTO people VALUES (default, 'John Doe', 'john@doe.com', '1234');
-	...
-	```
-6. Run in dev mode:
-	```shell
-	./rebar compile
 	./init-dev.sh
+	```
+
+6. Migrate (run inside project's erlang console):
+	```shell
+	> boss_migrate:run(chat).
 	```
 
 7. Open Safari or Firefox on http://localhost:8001, sign in, and have fun!

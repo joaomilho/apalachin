@@ -23,6 +23,10 @@ nav{
   padding: 20px;
 }
 
+nav form{
+  /*background: red;*/
+  float: right;
+}
 aside{
   /*background: rgba(0,0,0,0.1) !important;*/
   background: white;
@@ -39,7 +43,7 @@ section#main{
   /*float: left;*/
 }
 
-form{
+form#new-message{
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -79,6 +83,7 @@ form{
   border-radius: 4px;
   box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
   margin: 0;
+  font-family: Helvetica Neue;
 }
 
 .message .info .bubble:after{
@@ -212,3 +217,39 @@ span.typing{
   color: #fff;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
+
+
+table#results{
+  width: 100%;
+
+  background: white;
+}
+table#results td{
+  border-bottom: 1px solid #ccd;
+  padding: 20px;
+  color: #667;
+
+}
+
+table#results td.created_at{
+  width: 140px;
+  color: #99a;
+  font-size: 0.8em;
+
+}
+
+span.person.name{
+  color: #334;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+section#full{
+  margin: 20px;
+}
+
+section#full h3{
+  padding: 20px;
+  background: rgba(0,0,0,0.1);
+}
+

@@ -62,7 +62,6 @@ $(document).ready(function() {
   }
 
   function show_image(url){
-    alert(url);
     if(/\.(gif|png|jpe?g)$/i.test(url))
       return '<img src="' + url + '">';
     else

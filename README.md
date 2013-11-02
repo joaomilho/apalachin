@@ -13,7 +13,7 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 
 #### Look & feel
 
-<img alt="Apalachin look and feel" src="https://raw.github.com/joaomilho/apalachin/master/priv/static/img/shot.png" style="border: 1px solid #ccd;" />
+<img alt="Apalachin look and feel" src="https://raw.github.com/joaomilho/apalachin/master/priv/static/img/shot.png" />
 
 #### Install
 

@@ -9,4 +9,12 @@ before_(_) ->
 
 index('GET', [], User) ->
   Users = boss_db:find(person, []),
+
   {ok, [{current_user, User}, {users, Users}]}.
+
+search('GET', [], User) ->
+  Query = Req:query_param("q"),
+  Messages = search_lib:search(Query),
+
+  {ok, [{messages, Messages}, {q, Query}]}.
+

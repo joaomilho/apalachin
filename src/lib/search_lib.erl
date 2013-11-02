@@ -1,14 +1,15 @@
 -module(search_lib).
 -compile(export_all).
 
+%people.name,
+%people.email,
+%messages.created_at,
+%ts_headline(message, plainto_tsquery($1)) as message
+
 search(Query) ->
   SearchSQL = "
     SELECT
-      messages.id,
-      people.name,
-      people.email,
-      messages.created_at,
-      ts_headline(message, plainto_tsquery($1)) as message
+      'message-' || messages.id::text
     FROM
       messages JOIN people ON(messages.person_id = people.id),
       plainto_tsquery($1) query
@@ -17,4 +18,8 @@ search(Query) ->
     LIMIT 10;",
 
   {ok, _, Columns} = boss_db:execute(SearchSQL, [Query]),
-  Columns.
+  Ids = lists:map(fun(Column) -> {Id} = Column, binary_to_list(Id) end, Columns),
+  case Ids of
+    [] -> [];
+    _ -> boss_db:find(message, [{id, in, Ids}])
+  end.

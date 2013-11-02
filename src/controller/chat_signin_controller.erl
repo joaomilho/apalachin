@@ -5,8 +5,6 @@ create('POST', []) ->
   Email = Req:post_param("email"),
   Password = Req:post_param("password"),
 
-  %error_logger:info_msg("(/signin/create) ~p / ~p / ~p~n", [Email, Password, Req]),
-
   case auth_lib:signin(Email, Password) of
 
     [User] ->

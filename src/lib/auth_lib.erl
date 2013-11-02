@@ -8,11 +8,24 @@ signin(Email, Password) ->
   boss_db:find(person, [{email, Email}, {password, Password}]).
 
 auth(UserId) ->
-  case UserId of
+  case find_user_by_id(UserId) of
     undefined -> redirect_to_signin();
-    Id ->
-      case boss_db:find(Id) of
-        undefined -> redirect_to_signin();
-        User -> {ok, User}
-      end
-   end.
+    User -> {ok, User}
+  end.
+
+find_user_by_session(SessionId) ->
+  find_user_by_id(get_user_id_by_session(SessionId)).
+
+find_user_by_id(UserId) ->
+  case boss_db:find(UserId) of
+    {error, _} -> undefined;
+    undefined  -> undefined;
+    User       -> User
+  end.
+
+get_user_id_by_session(SessionId) ->
+  case SessionId of
+    undefined -> undefined;
+    _ -> boss_session:get_session_data(binary_to_list(SessionId), user_id)
+  end.
+

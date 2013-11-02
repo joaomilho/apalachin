@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   heights = function(){
     aside_height = $(window).height() - $('nav').height() - 40
-    messages_height = aside_height - $('input').height() - 20
+    messages_height = aside_height - $('input').height() - 70
     $('ul#messages').height( messages_height )
     $('aside').height( aside_height )
     scroll_messages()

@@ -34,6 +34,10 @@ notify_all_except_me(Notification, User, #state{users=Users}) ->
   EncodedNotification = jsx:encode(Notification),
   lists:map(fun(Conn) -> Conn ! {text, EncodedNotification} end, Connections).
 
+save_message(User, MessageText) ->
+  Message = message:new(id, User:id(), MessageText, erlang:now()),
+  Message:save().
+
 handle_join(_, WebSocketId, SessionId, State) ->
   case SessionId of
     undefined ->
@@ -73,6 +77,7 @@ handle_incoming(_, WebSocketId, SessionId, Message, State) ->
             [<<"typing">>, Data];
           _ ->
            Data = [list_to_binary(User:id()), Message],
+           save_message(User, Message),
             [<<"message">>, Data]
         end,
 

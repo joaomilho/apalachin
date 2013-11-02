@@ -1,0 +1,31 @@
+{% extends "app.html" %}
+
+{% block content %}
+  <section id="full">
+    <a href="/">&laquo; Back to chat</a>
+    {% with total=messages|length %}
+    <h3>{{total}} message{{ total|pluralize }} found with '{{q}}'.</h3>
+    {% endwith %}
+
+    <table cellpadding="0" cellspacing="0" id="results">
+      {% for message in messages %}
+        <tr>
+          <td>
+            <span class="person name">{{ message.person.name }}: </span>
+            {{ message.message }}
+          </td>
+
+          <td class="created_at">
+            {{ message.created_at|date }}
+          </td>
+        </tr>
+      {% endfor %}
+    </ul>
+
+  </section>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+

@@ -53,7 +53,8 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 7. Open Safari or Firefox on http://localhost:8001, sign in, and have fun!
 
 #### Roadmap
-- Add websockets compat layer to work in Chrome/IE as well;
+- Add support to reference users, with @ and maybe notify 'em by email;
+- Add websockets compat layer to work in IE as well;
 - <del>Add tests!;</del>
 - Add [bcrypt](https://github.com/mrinalwadhwa/erlang-bcrypt) to password validation;	
 - <del>Figure out how to have proper [migrations](https://groups.google.com/forum/#!searchin/chicagoboss/migrate/chicagoboss/Cp2e_8ZumoA/HSDzrAxrYfAJ), docs aren't helpful!;</del>

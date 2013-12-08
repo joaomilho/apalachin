@@ -116,8 +116,6 @@ $(document).ready(function() {
 
   var wsc = new WebSocket('ws://' + window.location.host + '/websocket/chat_protocol');
 
-  //wsc = new WebSocket("ws://localhost:8001/websocket/chat_protocol", "chat_protocol");
-
   wsc.onmessage = ws_receive_message;
   $(window).resize(heights);
   heights();

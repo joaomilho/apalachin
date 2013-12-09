@@ -62,10 +62,8 @@ handle_incoming(_, WebSocketId, SessionId, Message, State) ->
 
 handle_info(ping,  State) ->
   {noreply, State};
-
 handle_info(state, State) ->
   {noreply, State};
-
 handle_info(_,     State) ->
   {noreply, State}.
 

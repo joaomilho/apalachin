@@ -13,8 +13,6 @@ user_list(Users) ->
 
 save_message(User, MessageText) ->
   Message = message:new(id, User:id(), MessageText, erlang:now()),
-  error_logger:info_msg("(Message) ~p~n", [Message]),
-
   Message:save().
 
 % protocol methods
@@ -23,7 +21,6 @@ init() ->
   {ok, #state{users=dict:new()}}.
 
 handle_join(_, WebSocketId, SessionId, State) ->
-  error_logger:info_msg("(join) ~p~n", [State]),
 
   case auth_lib:find_user_by_session(SessionId) of
     undefined ->
@@ -39,12 +36,9 @@ handle_join(_, WebSocketId, SessionId, State) ->
   end.
 
 handle_close(ServiceName, WebSocketId, SessionId, State) ->
-  error_logger:info_msg("(close) ~p~n", [State]),
-
   {reply, ok, State}.
 
 handle_incoming(_, WebSocketId, SessionId, Message, State) ->
-  error_logger:info_msg("(incoming) ~p| ~p~n", [Message, State]),
 
   case auth_lib:find_user_by_session(SessionId) of
     undefined ->
@@ -67,22 +61,13 @@ handle_incoming(_, WebSocketId, SessionId, Message, State) ->
 
 
 handle_info(ping,  State) ->
-  error_logger:info_msg("(info1) ~p~n", [State]),
-
   {noreply, State};
 
 handle_info(state, State) ->
-  error_logger:info_msg("(info2) ~p~n", [State]),
-
   {noreply, State};
 
 handle_info(_,     State) ->
-  error_logger:info_msg("(info3) ~p~n", [State]),
-
   {noreply, State}.
 
-
 terminate(Reason, State) ->
-  error_logger:info_msg("(terminate) ~p | ~p~n", [Reason, State]),
-
   ok.

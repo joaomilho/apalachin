@@ -1,11 +1,6 @@
 -module(search_lib).
 -compile(export_all).
 
-%people.name,
-%people.email,
-%messages.created_at,
-%ts_headline(message, plainto_tsquery($1)) as message
-
 search(Query) ->
   SearchSQL = "
     SELECT

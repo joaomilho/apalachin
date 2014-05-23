@@ -15,7 +15,7 @@ have_label(Text) ->
 start() ->
 
   boss_web_test:get_request("/", [],
-    redirect_to("/signin/new"), [
+    redirect_to("/signin"), [
       "Redirect to signin when not signed",
       fun(SignInPage) ->
         boss_web_test:follow_redirect(SignInPage,
@@ -29,7 +29,7 @@ start() ->
       "Post incorrect data",
       fun(SignInPage) ->
         boss_web_test:post_request("/signin/create", [], "email=john@doe.com&password=1234",
-          redirect_to("/signin/new"), [])
+          redirect_to("/signin"), [])
       end,
 
       "Post correct data",

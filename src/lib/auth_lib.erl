@@ -2,7 +2,7 @@
 -compile(export_all).
 
 redirect_to_signin() ->
-  {redirect, "/signin/new"}.
+  {redirect, "/signin"}.
 
 signin(Email, Password) ->
   boss_db:find(person, [{email, Email}, {password, Password}]).
@@ -28,4 +28,3 @@ get_user_id_by_session(SessionId) ->
     undefined -> undefined;
     _ -> boss_session:get_session_data(binary_to_list(SessionId), user_id)
   end.
-

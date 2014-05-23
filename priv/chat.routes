@@ -15,6 +15,7 @@
 
 % Front page
 {"/", [{controller, "chat"}, {action, "index"}]}.
+{"/signin", [{controller, "signin"}, {action, "signin"}]}.
 
 % 404 File Not Found handler
 % {404, [{controller, "world"}, {action, "lost"}]}.

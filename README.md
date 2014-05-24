@@ -44,12 +44,17 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 	./init-dev.sh
 	```
 
-6. Migrate (run inside project's erlang console):
+6. Migrate (run inside project's erlang console) and generate some users:
 	```shell
 	> boss_migrate:run(chat).
+	> User = person:new(id, "Al Capone", "al@capone.com", "1234").
+        > User:save().
+	> User = person:new(id, "Joe Barber", "joe@barber.com", "1234").
+        > User:save().
 	```
 
 7. Open your [modern] browser on [http://localhost:8001](http://localhost:8001), sign in, and have fun!
+
 
 #### Roadmap
 - Add support to reference users, with @ and maybe notify 'em by email;

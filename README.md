@@ -4,7 +4,7 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 
 #### Goal of the project
 
-- Have a working example of many features of ChicagoBoss, including websockets, for the begginer.
+- Have a working example of many features of ChicagoBoss, including websockets, for the beginner.
 - Be as easy to mantain as possible.
 - Be stupidly fast.
 - Have a working version using Elixir also.

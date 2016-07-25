@@ -21,9 +21,9 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 
 2. Download and install ChicagoBoss:
 	```shell
-	wget http://www.chicagoboss.org/ChicagoBoss-0.8.7.tar.gz
-	tar -xvf ChicagoBoss-0.8.7.tar.gz
-	cd ChicagoBoss
+	wget wget https://github.com/ChicagoBoss/ChicagoBoss/archive/v0.8.7.tar.gz
+	tar -xvf v0.8.7.tar.gz
+	cd ChicagoBoss-0.8.7
 	make
 	```
 

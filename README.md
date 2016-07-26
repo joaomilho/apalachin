@@ -21,9 +21,9 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 
 2. Download and install ChicagoBoss:
 	```shell
-	wget wget https://github.com/ChicagoBoss/ChicagoBoss/archive/v0.8.7.tar.gz
-	tar -xvf v0.8.7.tar.gz
-	cd ChicagoBoss-0.8.7
+	wget wget https://github.com/ChicagoBoss/ChicagoBoss/archive/v0.8.19.tar.gz
+	tar -xvf v0.8.19.tar.gz
+	cd ChicagoBoss-0.8.19
 	make
 	```
 
@@ -32,7 +32,7 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 	git clone git@github.com:joaomilho/apalachin.git
 	cd apalachin
 	```
-	
+
 4. Copy boss.config.example to boss.config, then edit the file changing the path of ChicagoBoss and your database setup:
 	```shell
 	cp boss.config.example boss.config
@@ -60,7 +60,7 @@ A [websockets](http://tools.ietf.org/html/rfc6455) team chat built with [Erlang'
 - Add support to reference users, with @ and maybe notify 'em by email;
 - Add websockets compat layer to work in IE as well;
 - <del>Add tests!;</del>
-- Add [bcrypt](https://github.com/mrinalwadhwa/erlang-bcrypt) to password validation;	
+- Add [bcrypt](https://github.com/mrinalwadhwa/erlang-bcrypt) to password validation;
 - <del>Figure out how to have proper [migrations](https://groups.google.com/forum/#!searchin/chicagoboss/migrate/chicagoboss/Cp2e_8ZumoA/HSDzrAxrYfAJ), docs aren't helpful!;</del>
 - Make setup process more user friendly;
 - <del>Use [markdown](https://github.com/hypernumbers/erlmarkdown) or something like that, and allow auto urls in the chat;</del>

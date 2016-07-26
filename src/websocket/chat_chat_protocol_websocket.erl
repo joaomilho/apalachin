@@ -1,4 +1,4 @@
--module(chat_chat_protocol_websocket).
+-module(chat_chat_protocol_websocket, [Req, SessionId]).
 -behaviour(boss_service_handler).
 
 -record(state, {users}).
@@ -20,8 +20,7 @@ save_message(User, MessageText) ->
 init() ->
   {ok, #state{users=dict:new()}}.
 
-handle_join(_, WebSocketId, SessionId, State) ->
-
+handle_join(_, WebSocketId, State) ->
   case auth_lib:find_user_by_session(SessionId) of
     undefined ->
       {stop, "Auth", State};
@@ -32,14 +31,13 @@ handle_join(_, WebSocketId, SessionId, State) ->
 
       Notification = [<<"user_list">>, user_list(UpdatedUsers)],
       notify_all(Notification, AfterJoinState),
-      {reply, ok, AfterJoinState}
+      {noreply, AfterJoinState}
   end.
 
-handle_close(ServiceName, WebSocketId, SessionId, State) ->
+handle_close(ServiceName, WebSocketId, State) ->
   {reply, ok, State}.
 
-handle_incoming(_, WebSocketId, SessionId, Message, State) ->
-
+handle_incoming(_, WebSocketId, Message, State) ->
   case auth_lib:find_user_by_session(SessionId) of
     undefined ->
       {stop, "Auth", State};
@@ -49,8 +47,8 @@ handle_incoming(_, WebSocketId, SessionId, Message, State) ->
           Data = list_to_binary(User:id()),
           [<<"typing">>, Data];
         _ ->
-         Data = [list_to_binary(User:id()), Message],
-         save_message(User, Message),
+          Data = [list_to_binary(User:id()), Message],
+          save_message(User, Message),
           [<<"message">>, Data]
       end,
 
@@ -60,10 +58,6 @@ handle_incoming(_, WebSocketId, SessionId, Message, State) ->
   end.
 
 
-handle_info(ping,  State) ->
-  {noreply, State};
-handle_info(state, State) ->
-  {noreply, State};
 handle_info(_,     State) ->
   {noreply, State}.
 
